@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.page-wrap {
+    min-height: 100%;
+    margin-bottom: -90px;
+}
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+.site-footer, .page-wrap:after {
+    height: 90px;
+}
+.site-footer {
+    background: #dfe1db;
+}
+
+.nav-custom-border{
+    border-bottom:1px solid rgba(0, 8, 62, 0.68);
+}
+
+@media (max-width: 640px) {
+    .footer-links {
+        display: none;
+    }
+
+    .welcome {
+        font-size:3em;
+    }
+
+
+    .table-hide {
+        display:none;
+    }
+
+    .search{
+        display: none;
+    }
+}
+
+@media (max-width:1000px)
+{
+    .grow-btn {
+        width: 100%;
+    }
+}
