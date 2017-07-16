@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 class GUIController extends Controller
 {
     public function FindUser(Request $request){
+      if($request->t == "TOKEN"){
         //users must use email and password to try login, just like the website
         $email = $request->input('email');
         $password = $request->input('password');
@@ -36,19 +37,22 @@ class GUIController extends Controller
         //return json response
         $info = array($userExists);
         return \response()->json($info);
+      }
     }
 
     public function CreateUser(Request $request){
+      if($request->t == "TOKEN"){
         //hoping this will work, ripped from the register controller
         return User::create([
             'name' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password'))
         ]);
+      }
     }
 
     public function CreateModFarm(Request $request){
-
+if($request->t == "TOKEN"){
         $findFarm = Farm::find($request->input('id'));
 
         if(count($findFarm) == 0) {
@@ -69,9 +73,11 @@ class GUIController extends Controller
             $info = array($farm);
             return \response()->json($info);
         }
+      }
     }
 
     public function AssignRole(Request $request){
+      if($request->t == "TOKEN"){
         //use this to assign roles, pass in the supplied user email!
         //1 = admin, 2 = guest, 3 = user
         $useremail = $request->input('email');
@@ -92,30 +98,36 @@ class GUIController extends Controller
 
         $info = array($user, $roleid);
         return \response()->json($info);
+      }
     }
 
 
 
     public function GetFarmName(Request $request)
     {
+      if($request->t == "TOKEN"){
         //pass in farmid to get farm name
         $farmid = $request->farmid;
         $farm = Farm::find($farmid);
         $farmname = $farm->name;
         return \response()->json($farmname);
+      }
     }
 
     public function GetFarmArea(Request $request)
     {
+      if($request->t == "TOKEN"){
         //pass in farmid to get farm area
         $farmid = $request->farmid;
         $farm = Farm::find($farmid);
         $farmname = $farm->area;
         return \response()->json($farmname);
+      }
     }
 
     public function GetCows(Request $request)
     {
+      if($request->t == "TOKEN"){
         //get cows from farm sups with id
         $farmid = $request->farmid;
         if (count(FarmSupplement::all()) == 0) {
@@ -124,10 +136,12 @@ class GUIController extends Controller
             $farmsup = DB::table('farm_supplements')->select('cows')->where('farmid', '=', $farmid)->orderBy('id')->first();
         }
         return \response()->json($farmsup);
+      }
     }
 
     public function AssignFarm(Request $request)
     {
+      if($request->t == "TOKEN"){
         $farmid = $request->input('farmid');
         $useremail = $request->input('email');
         $user =  User::where('email', $useremail)->first();
@@ -146,10 +160,12 @@ class GUIController extends Controller
             $assignFarm->farmid = $farmid;
             $assignFarm->save();
         }
+      }
     }
 
     public function ModifyUser(Request $request)
     {
+      if($request->t == "TOKEN"){
         //this is really bad :^) we need to make it a post + add security
         //pass in user email, must be done!
         $useremail = $request->input('email');
@@ -171,10 +187,12 @@ class GUIController extends Controller
         }
 
         $user->save();
+      }
     }
 
     //get the user farm
     public function UserFarm(Request $request){
+      if($request->t == "TOKEN"){
         //pass in the user email
         $useremail = $request->input('email');
         $user =  User::where('email', $useremail)->first();
@@ -198,10 +216,12 @@ class GUIController extends Controller
             $info = array($farmid, $farmname, $area);
             return \response()->json($info);
         }
+      }
     }
 
     //get user role
     public function UserRole(Request $request){
+      if($request->t == "TOKEN"){
         //pass in the user email
         $useremail = $request->input('email');
         $user =  User::where('email', $useremail)->first();
@@ -221,15 +241,19 @@ class GUIController extends Controller
                 $role = 2; //guest
         }
         return \response()->json($role);
+      }
     }
 
     public function GetConsData(Request $request){
+      if($request->t == "TOKEN"){
         $fulldate = $request->fulldate;
         $data =  DB::table('weeklydatas')->select('farmid','data')->where('sdate','=', $fulldate)->get();
         return \response()->json($data);
+      }
     }
 
     public function  GetFarmDates (Request $request){
+      if($request->t == "TOKEN"){
         //input is user email, return distinct of each date
         //pass in the user email
         $userid = $request->input('userid');
@@ -246,6 +270,7 @@ class GUIController extends Controller
             }
             return \response()->json($dates);
         }
+      }
     }
 
 }

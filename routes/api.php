@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Label;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/foo', function () {
+Route::get('/foo', function (Request $request) {
+  if($request->t == "TOKEN"){
     return 'Testing... Testing';
+  }
 });
 
 /*-------------------------------------------------------------------------------------
@@ -52,19 +55,25 @@ Route::get('/assignrole', array(
 ));
 
 Route::get('/getusers', function (Request $request){
+  if($request->t == "TOKEN"){
     $users = User::all();
     return \response()->json($users);
+  }
 });
 
 Route::get('/getfarms',  function (Request $request){
+  if($request->t == "TOKEN"){
     $farms = Farm::all();
     return \response()->json($farms);
+  }
 });
 
 
 Route::get('/getuserfarms', function (Request $request){
+  if($request->t == "TOKEN"){
     $farms = UserFarm::all();
     return \response()->json($farms);
+  }
 });
 
 Route::get('/getuserrole', array(
@@ -88,8 +97,10 @@ Route::get('/getcows', array(
 ));
 
 Route::get('/getfarmcount',function (Request $request){
+  if($request->t == "TOKEN"){
     $farmcount = Farm::count();
     return \response()->json($farmcount);
+  }
 });
 
 
@@ -109,8 +120,10 @@ Route::get('/modifyuser', array(
 ));
 
 Route::get('/getuploaddates', function (Request $request){
+  if($request->t == "TOKEN"){
     $data =  DB::table('weeklydatas')->select('sdate')->distinct()->get();
     return \response()->json($data);
+  }
 });
 
 /*-------------------------------------------------------------------------------------
@@ -132,11 +145,15 @@ Route::get('/getfarmdates', array(
 ---------------------------------------------------------------------------------------*/
 
 Route::get('/getlabels',  function (Request $request){
+  if($request->t == "TOKEN"){
     $labels = Label::all();
     return \response()->json($labels);
+  }
 });
 
 Route::get('/getcalcs', function (Request $request){
+  if($request->t == "TOKEN"){
     $calcs = Calculation::all();
     return \response()->json($calcs);
+  }
 });
