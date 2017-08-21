@@ -2771,10 +2771,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-primary {
     color: #fff;
+    background-color: #f09300;
+    border-color: #f09300
 }
 
 .btn-primary:hover {
     color: #fff;
+    background-color: #e56002;
+    border-color: #e56002
 }
 
 .btn-primary.focus, .btn-primary:focus {
@@ -2783,11 +2787,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
+    background-color: #f09300;
+    border-color: #f09300
 }
 
 .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
     color: #fff;
+    background-color: #e56002;
     background-image: none;
+    border-color: #e56002
 }
 
 .btn-secondary {
@@ -2949,6 +2957,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-outline-primary.focus, .btn-outline-primary:focus {
+    -webkit-box-shadow: 0 0 0 2px rgba(216, 118, 0, 0.5);
+    box-shadow: 0 0 0 2px rgba(216, 118, 0, 0.5)
 }
 
 .btn-outline-primary.disabled, .btn-outline-primary:disabled {
@@ -6072,9 +6082,11 @@ button.close {
 }
 
 .bg-primary {
+    background-color: #f09300 !important
 }
 
 a.bg-primary:focus, a.bg-primary:hover {
+    background-color: #e56002 !important
 }
 
 .bg-success {
@@ -9684,9 +9696,11 @@ a.text-muted:focus, a.text-muted:hover {
 }
 
 .text-primary {
+    color: #f09300 !important
 }
 
 a.text-primary:focus, a.text-primary:hover {
+    color: #f09300 !important
 }
 
 .text-success {
