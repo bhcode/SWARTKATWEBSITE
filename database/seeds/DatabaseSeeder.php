@@ -13,6 +13,5 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserRoles::class);
         $this->call(LabelSeeder::class);
-        $this->call(monthlyInputs::class);
     }
 }
