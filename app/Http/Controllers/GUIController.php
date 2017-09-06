@@ -11,7 +11,6 @@ use App\Paddock;
 use App\Label;
 use App\UserFarm;
 use App\Weeklydata;
-use Aws\CloudFront\Exception\Exception;
 use Caffeinated\Shinobi\Middleware\UserHasRole;
 use App\User;
 use Illuminate\Http\Request;
